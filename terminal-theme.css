@@ -42,7 +42,9 @@ h1,h2,h3,.brand,.node-name,.mission-head,.kicker,.shop-name,.field-label{font-we
 /* Recognizable header actions */
 header .header-action{height:38px;padding:4px 11px 4px 6px;gap:6px;font-weight:800;white-space:nowrap}
 header .header-action img{width:28px;height:28px;object-fit:contain;filter:none}
-@media(max-width:640px){header .header-action{padding:4px 8px;gap:0}header .header-action img{width:24px;height:24px}header button{padding:5px 6px}#focusBtn,#tutorialBtn,#pauseBtn{width:32px;height:32px;display:grid;place-items:center}}
+@media(max-width:640px){header .header-action{padding:4px 8px;gap:0}header .header-action img{width:24px;height:24px}header button{padding:5px 6px}#focusBtn,#tutorialBtn,#pauseBtn{width:32px;height:32px;display:grid;place-items:center}
+#game{width:100vw!important;height:100vh!important;aspect-ratio:auto!important;border-radius:0!important;box-shadow:none!important}
+}
 #tributeBtn{border-color:#d79b27!important;background:#fff8e6!important}
 #requisitionBtn{border-color:#3157d5!important;background:#edf2ff!important}
 #functionBtn{border-color:#22a8b8!important;background:#eafcff!important}
