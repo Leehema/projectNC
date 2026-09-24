@@ -14,7 +14,8 @@ button{background:#fff;color:#111;border:2px solid #111;border-radius:var(--radi
 .shop-icon img{display:block;width:58px;height:58px;object-fit:contain;filter:drop-shadow(0 3px 5px #223b8f22)}
 /* Flat unified UI skin */
 body,#game,.screen{background:#e9edf5}.title-card,.slot-wrap,.panel,.dialogue-box,.pack-stage,.history-visual{background:#fff!important;border:1px solid #c9d1e3!important;box-shadow:0 12px 32px #26365f18!important}.title-card:before,.slot-wrap:before,.panel:before,.pack-stage:before,.history-visual:before{background:#3157d5!important;border-color:#2949b6!important}.logo-mark,.loader-mark,.kicker,.brand-mark{color:#3157d5!important;text-shadow:none}.brand-mark{font-weight:900}header{background:#fff!important;border-bottom:1px solid #c9d1e3!important;box-shadow:none!important}aside{background:#f5f7fb!important;border-right:1px solid #c9d1e3!important}.mission{background:#fff!important;border:1px solid #c9d1e3!important;box-shadow:none!important}.mission.done{border-color:#3157d5!important;box-shadow:inset 4px 0 #3157d5!important}#viewport{background-color:#f9fbff!important;background-image:linear-gradient(#3157d514 1px,transparent 1px),linear-gradient(90deg,#3157d514 1px,transparent 1px)!important;box-shadow:none!important}button,header button,.shop-item,.slot{background:#f3f5fa!important;color:#20283a!important;border:1px solid #c6cede!important;border-radius:8px!important;box-shadow:none!important}button:hover:not(:disabled),.shop-item:hover:not(:disabled),.slot:hover{background:#e8edfa!important;border-color:#3157d5!important;filter:none!important}.primary,.pack,.pack-box{background:#3157d5!important;color:#fff!important;border-color:#2949b6!important}.pack-box{box-shadow:0 10px 24px #3157d526!important}.node{background:#fff!important;border:1px solid #aeb8ce!important;border-left:6px solid var(--node)!important;box-shadow:0 6px 16px #25345a18!important}.node:hover{box-shadow:0 8px 20px #25345a25!important}.node-icon-big{background:#f4f6fb!important;border:1px solid #c7cfdf!important;box-shadow:none!important}.progress,.node-progress{background:#e5e9f2!important;border-color:#c5ccda!important}.overlay{background:#20283a99!important}#toast,.hint,.node-tooltip{box-shadow:0 8px 20px #25345a22!important}.tutorial-grid div,.card-reveal{background:#f7f8fb!important;border:1px solid #d0d6e3!important;box-shadow:none!important}.shop-price{background:#3157d5!important}.field{background:#f5c5420f!important}.history-icon img{box-shadow:none!important;border-color:#c9d1e3!important}
-@media(max-width:800px){.title-card{padding-left:24px;padding-right:24px}.title-card h1{white-space:normal!important}.pack-stage{padding:58px 24px 30px}.history-visual{width:76vw;top:5%;min-height:250px}.history-icon{font-size:26px}}
+@media(max-width:800px){.title-card{padding-left:24px;padding-right:24px}.title-card h1{white-space:normal!important;line-height:1.3!important}.pack-stage{padding:58px 24px 30px}.history-visual{width:76vw;top:5%;min-height:250px}.history-icon{font-size:26px}}
+@media(max-width:480px){.title-card h1{font-size:22px!important;line-height:1.35!important}}
 /* Open node artwork: no icon frame, larger readable symbols */
 .node-icon-big{width:88px!important;height:88px!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:visible}
 .node-icon-big img{width:100%!important;height:100%!important;object-fit:contain}
@@ -41,6 +42,7 @@ h1,h2,h3,.brand,.node-name,.mission-head,.kicker,.shop-name,.field-label{font-we
 /* Recognizable header actions */
 header .header-action{height:38px;padding:4px 11px 4px 6px;gap:6px;font-weight:800;white-space:nowrap}
 header .header-action img{width:28px;height:28px;object-fit:contain;filter:none}
+@media(max-width:640px){header .header-action{padding:4px 8px;gap:0}header .header-action img{width:24px;height:24px}header button{padding:5px 6px}#focusBtn,#tutorialBtn,#pauseBtn{width:32px;height:32px;display:grid;place-items:center}}
 #tributeBtn{border-color:#d79b27!important;background:#fff8e6!important}
 #requisitionBtn{border-color:#3157d5!important;background:#edf2ff!important}
 #functionBtn{border-color:#22a8b8!important;background:#eafcff!important}
@@ -54,6 +56,13 @@ header .header-action img{width:28px;height:28px;object-fit:contain;filter:none}
 .pack-box span img{display:block;width:128px;height:168px;object-fit:contain;pointer-events:none;filter:none}
 .pack-box{width:230px;height:230px;margin:18px auto 0;padding:12px;grid-template-rows:1fr auto}
 .aria-hint{background:#fff;border:2px solid #111;border-radius:var(--radius-md);box-shadow:var(--shadow-md)}
+.tribute-row{background:#fff;border:2px solid #111;border-radius:var(--radius-md);box-shadow:var(--shadow-sm)}
+.tribute-info b{color:#111}
+.tribute-confirm{background:var(--blue);color:#fff;border:2px solid #111;border-radius:var(--radius-pill);padding:6px 12px;font-weight:900}
+.tribute-confirm:hover{filter:brightness(1.1)}
+.qty-btn{background:#fff;border:2px solid #111;border-radius:var(--radius-sm);font-weight:900;color:#111}
+.qty-btn:hover{background:#f0f0f0}
+.qty-input{border:2px solid #111;border-radius:var(--radius-sm);color:#111}
 .aria-hint-tag{color:var(--blue)}
 #ariaHintText{color:#111}
-@media(max-width:650px){.pack-stage{width:92vw;height:84vh;padding:52px 20px 22px}.pack-stage:has(.card-reveal:not(.hidden)){grid-template-columns:1fr 1fr;column-gap:10px}.pack-box{width:190px;height:210px}.pack-box span img{width:108px;height:142px}.card-reveal{width:min(260px,100%);padding:14px}#cardGlyph img{width:90px;height:90px}}
+@media(max-width:650px){.pack-stage{width:92vw;height:84vh;padding:76px 20px 22px}.pack-stage:has(.card-reveal:not(.hidden)){grid-template-columns:1fr 1fr;column-gap:10px}.pack-box{width:190px;height:210px}.pack-box span img{width:108px;height:142px}.card-reveal{width:min(260px,100%);padding:14px}#cardGlyph img{width:90px;height:90px}}
