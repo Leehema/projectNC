@@ -1,0 +1,56 @@
+/* ==========================================================================
+   GUIDE ARROW — points the player at a button they need to press.
+   Positioned by updateGuideArrow() in game.js: left/top = arrow tip.
+   data-dir="left" → sits to the right of the target, pointing left.
+   data-dir="up"   → sits below the target, pointing up.
+   ========================================================================== */
+/* Guide red: stands apart from the Klein-blue UI so the pointer is never lost in it. */
+:root{--guide:#ff1f3d}
+#playScreen{position:relative}
+header{position:relative;z-index:6}
+
+.guide-arrow{position:absolute;z-index:12;pointer-events:none;display:flex;align-items:center;gap:6px}
+.guide-arrow[data-dir="left"]{flex-direction:row;transform:translateY(-50%)}
+.guide-arrow[data-dir="up"]{flex-direction:column;transform:translateX(-50%)}
+/* Near the screen edge the label hangs inward; the arrow tip stays on target. */
+.guide-arrow[data-dir="up"][data-align="start"]{align-items:flex-start;transform:translateX(-22px)}
+.guide-arrow[data-dir="up"][data-align="end"]{align-items:flex-end;transform:translateX(calc(-100% + 22px))}
+
+.ga-icon{position:relative;width:100px;height:44px;flex:0 0 auto}
+.guide-arrow[data-dir="up"] .ga-icon{width:44px;height:100px}
+.ga-icon svg{position:absolute;left:50%;top:50%;width:100px;height:44px;overflow:visible;transform:translate(-50%,-50%)}
+.guide-arrow[data-dir="up"] .ga-icon svg{transform:translate(-50%,-50%) rotate(90deg)}
+.ga-shadow{fill:var(--ink)}
+.ga-head{fill:var(--guide)}
+.ga-outline{fill:none;stroke:var(--ink);stroke-width:2.5;stroke-linejoin:miter}
+.ga-chev polyline{fill:none;stroke:var(--guide);stroke-width:5;stroke-linecap:square;stroke-linejoin:miter;opacity:.15}
+
+.ga-label{display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:5px 10px 6px;background:var(--ink);color:#fff;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--guide);white-space:nowrap}
+.guide-arrow[data-dir="up"] .ga-label{align-items:center}
+.ga-label small{font:700 8.5px/1.2 var(--f-mono);letter-spacing:.22em;color:#ff9aa6}
+.ga-label b{font-size:13px;font-weight:700;letter-spacing:-.01em}
+.ga-label b:after{content:"";display:inline-block;width:7px;height:12px;margin-left:5px;vertical-align:-1px;background:var(--guide);animation:pmBlink .8s steps(1) infinite}
+
+/* ---------- Motion ---------- */
+@keyframes gaPoke{0%,62%,100%{transform:translateX(0)}28%{transform:translateX(-11px)}44%{transform:translateX(2px)}}
+@keyframes gaChev{0%,100%{opacity:.15}25%{opacity:1}55%{opacity:.15}}
+@keyframes gaInLeft{from{opacity:0;translate:36px 0}}
+@keyframes gaInUp{from{opacity:0;translate:0 36px}}
+@keyframes gaGlitch{0%,92%,100%{transform:none;box-shadow:4px 4px 0 var(--guide)}93%{transform:translateX(3px) skewX(-10deg);box-shadow:-3px 0 0 #ff2448,4px 4px 0 var(--guide)}96%{transform:translateX(-2px);box-shadow:3px 0 0 #00e5ff,4px 4px 0 var(--guide)}}
+@keyframes gaRing{0%{outline-offset:2px;outline-color:var(--guide)}100%{outline-offset:13px;outline-color:transparent}}
+
+.ga-move{animation:gaPoke 1.1s cubic-bezier(.7,0,.2,1) infinite}
+.ga-chev polyline{animation:gaChev 1.1s linear infinite}
+.ga-chev polyline:nth-child(3){animation-delay:0s}
+.ga-chev polyline:nth-child(2){animation-delay:.14s}
+.ga-chev polyline:nth-child(1){animation-delay:.28s}
+.ga-label{animation:gaGlitch 4s linear 1s infinite}
+.guide-arrow.ga-enter[data-dir="left"]{animation:gaInLeft .5s var(--ease-snap) backwards}
+.guide-arrow.ga-enter[data-dir="up"]{animation:gaInUp .5s var(--ease-snap) backwards}
+.guide-arrow.ga-enter .ga-label{animation:pmWipeIn .45s var(--ease-snap) .2s backwards,gaGlitch 4s linear 1.2s infinite}
+
+/* The button being pointed at: expanding Klein-blue ring. */
+#playScreen:not(.hidden) header>.guide-target,.guide-target{outline:2px solid var(--guide);outline-offset:2px;animation:gaRing 1.1s ease-out infinite}
+.pack.guide-target{clip-path:none}
+/* Not enough room beside the target (e.g. mobile sidebar open): arrow only. */
+.guide-arrow.ga-compact .ga-label{display:none}

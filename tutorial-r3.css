@@ -1,0 +1,38 @@
+/* ==========================================================================
+   ROUND 3 OPERATION GUIDE — step card driven by tickTut3()/renderTut3().
+   Sits top-right on the board; the guide arrow points at each step's button.
+   .tc-swap replays the entrance on every step, .tc-complete is the outro.
+   ========================================================================== */
+.tutor-card{position:absolute;right:16px;top:44px;z-index:7;width:340px;background:#fff;border:2px solid var(--ink);box-shadow:7px 7px 0 var(--klein);color:var(--ink)}
+.tc-head{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:var(--ink);color:#fff;font:700 10px/1 var(--f-mono);letter-spacing:.16em}
+.tc-head span:before{content:"";display:inline-block;width:7px;height:7px;margin-right:7px;background:var(--klein);animation:pmBlink 1s steps(1) infinite}
+.tc-head b{font-weight:800;letter-spacing:.08em}
+.tc-bar{display:flex;gap:3px;padding:8px 12px 0}
+.tc-bar i{flex:1;height:5px;border:1.5px solid var(--ink);background:#fff}
+.tc-bar i.done{background:var(--ink)}
+.tc-bar i.cur{background:var(--klein);border-color:var(--klein);animation:pmBlink .9s steps(1) infinite}
+.tc-body{display:flex;gap:12px;padding:10px 12px 4px}
+.tc-text{min-width:0}
+.tc-body h4{margin:0 0 4px;font-size:15px;font-weight:700}
+.tc-body p{margin:0;font-size:12.5px;line-height:1.55;color:var(--ink-2)}
+.tc-body .tc-cta{margin-top:8px;color:var(--klein);font-weight:700}
+.tc-body .tc-cta:not(:empty):before{content:"▸ "}
+.tc-key{flex:0 0 auto;padding-top:4px}
+.tc-key kbd{display:block;padding:9px 12px 8px;background:#fff;border:2px solid var(--ink);box-shadow:0 5px 0 var(--ink);font:800 11px/1 var(--f-mono);letter-spacing:.14em;color:var(--ink);animation:tcPress 1.4s var(--ease-snap,cubic-bezier(.7,0,.2,1)) infinite}
+.tc-skip{display:block;margin:6px 12px 10px auto;padding:5px 10px!important;font:700 10px/1 var(--f-mono)!important;letter-spacing:.1em}
+.tutor-card.tc-complete{box-shadow:7px 7px 0 var(--ink)}
+.tutor-card.tc-complete .tc-head{background:var(--klein)}
+.tutor-card.tc-complete .tc-skip{display:none}
+.tutor-card.tc-complete .tc-body{padding-bottom:12px}
+
+@keyframes tcPress{0%,55%,100%{transform:none;box-shadow:0 5px 0 var(--ink);background:#fff;color:var(--ink)}65%,80%{transform:translateY(4px);box-shadow:0 1px 0 var(--ink);background:var(--klein);color:#fff}}
+@keyframes tcIn{from{clip-path:inset(0 100% 0 0);transform:translateX(-14px)}to{clip-path:inset(-12px);transform:none}}
+@keyframes tcRise{from{opacity:0;transform:translateY(8px)}}
+.tutor-card.tc-swap{animation:tcIn .45s var(--ease-snap,cubic-bezier(.7,0,.2,1))}
+.tutor-card.tc-swap .tc-text>*{animation:tcRise .4s var(--ease-out,ease-out) backwards}
+.tutor-card.tc-swap .tc-text>:nth-child(2){animation-delay:.08s}
+.tutor-card.tc-swap .tc-text>:nth-child(3){animation-delay:.16s}
+
+/* Header buttons get the guide arrow, so keep hints clear of it while the guide runs. */
+#viewport:has(.tutor-card:not(.hidden)) .hint{top:auto;bottom:84px}
+@media(max-width:640px){.tutor-card{left:10px;right:10px;top:auto;bottom:54px;width:auto}}
