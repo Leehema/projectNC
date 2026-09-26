@@ -137,6 +137,9 @@ aside::-webkit-scrollbar{width:8px}aside::-webkit-scrollbar-thumb{background:var
   repeating-linear-gradient(90deg,#0e0e1066 0 1px,transparent 1px 10px) left 40px bottom 0/calc(100% - 80px) 6px no-repeat!important}
 #viewport:after{background:var(--ink)!important;color:#fff!important;border:0!important;border-radius:0!important;font-family:var(--f-mono);letter-spacing:.12em;padding:5px 9px!important}
 #zoomLabel{font-family:var(--f-mono);font-weight:700;color:var(--ink)!important;background:#fff!important;border:1.5px solid var(--ink)!important;border-radius:0!important}
+.star-total{font-family:var(--f-mono);font-weight:700;color:var(--ink)!important;background:#fff!important;border:1.5px solid var(--ink)!important;border-radius:0!important}
+.star-total b{color:var(--klein)!important}
+.star-total small{color:var(--muted)!important}
 .hint{background:var(--klein)!important;color:#fff!important;border:2px solid var(--ink)!important;border-radius:0!important;box-shadow:5px 5px 0 var(--ink)!important;font-weight:600}
 .hint:before{content:"NOTICE";font:700 9px/1 var(--f-mono);letter-spacing:.16em;background:#fff;color:var(--klein);padding:3px 5px;margin-right:9px;vertical-align:1px}
 #toast{background:var(--ink)!important;color:#fff!important;border:0!important;border-left:6px solid var(--klein)!important;border-radius:0!important;box-shadow:5px 5px 0 #0e0e1033!important}
@@ -303,3 +306,17 @@ aside::-webkit-scrollbar{width:8px}aside::-webkit-scrollbar-thumb{background:var
 @keyframes pbBlink{50%{opacity:.25}}
 @keyframes pbFrame{0%,100%{outline-width:6px;outline-offset:-6px;outline-color:var(--klein)}50%{outline-width:11px;outline-offset:-11px;outline-color:#1f24ffb3}}
 @media(max-width:640px){#pauseIndicator.pause-banner{padding:8px 14px 8px 8px;gap:10px;max-width:92%}.pb-icon{width:40px;height:40px}.pb-text b{font-size:18px}.pb-text small{font-size:11px}}
+
+/* ---------- Reroute knot (UE Blueprint-style reroute node) ----------
+   A tiny node: input pin · dot · output pin. Drag the dot to move it,
+   drag from the right pin to wire out, drop wires on it to wire in. */
+.node.knot{width:40px!important;min-height:0!important;height:20px;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;filter:none!important;overflow:visible}
+.node.knot:hover{transform:none!important;box-shadow:none!important}
+.node.knot.selected,.node.knot.selected:hover{box-shadow:none!important}
+.knot-dot{position:absolute;left:11px;top:1px;width:18px;height:18px;border-radius:50%;background:var(--node);border:2px solid var(--ink);box-shadow:0 0 0 2px #fff;cursor:move;transition:transform .15s,box-shadow .15s}
+.node.knot:hover .knot-dot{transform:scale(1.15)}
+.node.knot.selected .knot-dot{box-shadow:0 0 0 2px #fff,0 0 0 5px var(--klein),0 0 12px var(--klein)}
+.node.knot .port{top:5px;width:10px;height:10px;border-width:1.5px!important;box-shadow:0 0 0 1.5px #fff,0 0 0 2.5px var(--ink)!important;opacity:0;transition:opacity .15s}
+.node.knot .port.in{left:-4px}
+.node.knot .port.out{right:-4px}
+.node.knot:hover .port,.node.knot.selected .port,.node.knot .port.port-ok{opacity:1}
